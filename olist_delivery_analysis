@@ -1,0 +1,247 @@
+-- ==========================================
+-- [Project] Olist Ecommerce 태블로 시각화를 위한 데이터 추출
+-- [Tools] POSTGRE SQL
+-- ==========================================
+  
+-- 1. 대시보드 상단 요약 수치 (배송 지연율, 셀러 지연율, 6일 이상 지연율)
+  
+SELECT  
+		COUNT(DISTINCT CASE WHEN delivery_efficiency < 0
+		THEN o.order_id END)::FLOAT
+		/ NULLIF(COUNT(DISTINCT o.order_id),0) AS delay_rate,
+		COUNT(DISTINCT CASE WHEN order_delivered_carrier_date::DATE > shipping_limit_date::DATE
+		THEN o.order_id END)::FLOAT
+		/ NULLIF(COUNT(DISTINCT o.order_id),0) AS seller_delay_rate,
+		COUNT(DISTINCT CASE WHEN delivery_efficiency <= -6
+		THEN o.order_id END)::FLOAT
+		/ NULLIF(COUNT(DISTINCT CASE WHEN delivery_efficiency < 0
+		THEN o.order_id END),0) AS long_days_delay_rate
+FROM orders o 
+LEFT JOIN items i
+ON o.order_id = i.order_id;
+--------------------------------------------
+  
+-- 2. 월별 지연 추이, 증감률
+  
+WITH monthly_kpi AS (
+    SELECT 
+				DATE_TRUNC('month', o.order_purchase_timestamp) AS month,
+        COUNT(DISTINCT CASE WHEN delivery_efficiency < 0 THEN o.order_id END)::FLOAT
+        / NULLIF(COUNT(DISTINCT o.order_id), 0) AS delay_rate,
+        COUNT(DISTINCT CASE WHEN order_delivered_carrier_date::DATE > shipping_limit_date::DATE THEN o.order_id END)::FLOAT
+        / NULLIF(COUNT(DISTINCT o.order_id), 0) AS seller_delay_rate,
+        COUNT(DISTINCT CASE WHEN delivery_efficiency <= -6 THEN o.order_id END)::FLOAT
+        / NULLIF(COUNT(DISTINCT CASE WHEN delivery_efficiency < 0 THEN o.order_id END), 0) AS long_days_delay_rate
+    FROM orders o 
+    LEFT JOIN items i ON o.order_id = i.order_id 
+    GROUP BY 1
+), 
+prev_kpi AS (
+	SELECT *,
+		LAG(delay_rate) OVER (ORDER BY month) AS prev_delay_rate,
+		LAG(seller_delay_rate) OVER (ORDER BY month) AS prev_seller_rate,
+		LAG(long_days_delay_rate) OVER (ORDER BY month) AS prev_long_days_delay_rate
+	FROM monthly_kpi
+)
+SELECT 
+    month,
+    round(delay_rate::numeric, 4) AS delay_rate,
+    round(((delay_rate - prev_delay_rate) 
+        / NULLIF(prev_delay_rate, 0))::numeric, 4) AS delay_rate_mom,
+    
+    round(seller_delay_rate::numeric, 4) AS seller_delay_rate,
+    round(((seller_delay_rate - prev_seller_rate)
+        / NULLIF(prev_seller_rate, 0))::numeric, 4) AS seller_delay_rate_mom,
+    
+    round(long_days_delay_rate::numeric, 4) AS long_days_delay_rate,
+    round(((long_days_delay_rate - prev_long_days_delay_rate) 
+        / NULLIF(prev_long_days_delay_rate, 0))::numeric, 4) AS long_days_delay_rate_mom   
+FROM prev_kpi
+ORDER BY 1;
+--------------------------------------------
+
+  
+-- 3. 지연 일수 분포
+  
+WITH delay_days AS (
+	SELECT
+		DISTINCT order_id,
+		ABS(delivery_efficiency) AS delay_days
+	FROM orders
+	WHERE delivery_efficiency < 0
+)
+SELECT 
+	CASE
+		WHEN delay_days BETWEEN 1 AND 3 THEN '1-3'
+		WHEN delay_days BETWEEN 4 AND 6 THEN '4-6'
+		WHEN delay_days BETWEEN 7 AND 10 THEN '7-10'
+		WHEN delay_days BETWEEN 11 AND 20 THEN '11-20'
+		WHEN delay_days >= 21 THEN '21~'
+	END AS delay_bins,
+	COUNT(DISTINCT order_id) AS counts
+FROM delay_days
+GROUP BY 1;
+
+--------------------------------------------
+  
+-- 4. 지연율이 높은 노선 
+
+SELECT
+		seller_state,
+		customer_state,
+		CASE WHEN seller_state = customer_state THEN '같은 주' ELSE '다른 주' END AS route_type,
+		AVG(order_delivered_customer_date - order_purchase_timestamp) AS avg_delivery_days,
+		COUNT(DISTINCT o.order_id) AS order_count,
+		SUM(CASE WHEN delivery_efficiency < 0 THEN 1 ELSE 0 END) AS delay_count
+		
+FROM orders o
+LEFT JOIN customers c ON o.customer_id = c.customer_id
+LEFT JOIN items i ON o.order_id = i.order_id
+LEFT JOIN sellers s ON i.seller_id = s.seller_id
+WHERE o.order_status = 'delivered'
+GROUP BY 1,2,3
+ORDER BY delay_count DESC;		
+
+--------------------------------------------
+
+  
+-- 1. 대시보드 하단 리스트 (지연 고객 리스트, 지연 셀러 리스트, 지연 후 재구매 리스트, 지연 후 미구매 리스트)
+-- (1) 지연 고객 리스트
+WITH order_revenue AS (
+		SELECT
+			order_id, SUM(payment_value) AS revenue
+		FROM payments
+		GROUP BY 1
+)
+SELECT c.customer_unique_id, 
+		order_status, 
+		order_purchase_timestamp, 
+	('2018-10-17'::date - order_estimated_delivery_date::date) AS delay_days,
+	r.revenue
+	
+FROM orders o
+LEFT JOIN order_revenue r ON o.order_id = r.order_id
+LEFT JOIN customers c ON o.customer_id = c.customer_id
+WHERE order_status IN ('shipped', 'processing', 'invoiced')
+  AND order_delivered_customer_date IS NULL
+  AND order_estimated_delivery_date BETWEEN '2017-10-17' AND '2018-10-17'
+ORDER BY revenue DESC;
+
+--(2) 지연 셀러 리스트
+  
+WITH seller_processed AS (
+    SELECT 
+        i.seller_id,
+		SUM(i.price + i.freight_value) AS total_payments_value,
+        COUNT(DISTINCT o.order_id) AS total_order,
+        COUNT(DISTINCT CASE WHEN o.order_delivered_carrier_date::date > i.shipping_limit_date::date
+                            THEN o.order_id END) AS seller_late_count,
+        ROUND(AVG(CASE WHEN o.order_delivered_carrier_date::date > i.shipping_limit_date::date
+                       THEN o.order_delivered_carrier_date::date - i.shipping_limit_date::date END), 2) AS avg_excess_days,
+        ROUND(COUNT(DISTINCT CASE WHEN o.order_delivered_carrier_date > i.shipping_limit_date
+                                  THEN o.order_id END)::numeric / NULLIF(COUNT(DISTINCT o.order_id), 0) ,4) AS seller_late_rate,
+        o.order_purchase_timestamp 					  
+    FROM orders o
+    INNER JOIN items i ON o.order_id = i.order_id
+    WHERE o.order_status NOT IN ('canceled', 'unavailable')
+      AND o.order_delivered_carrier_date IS NOT NULL
+    GROUP BY 1
+    HAVING COUNT(DISTINCT CASE WHEN o.order_delivered_carrier_date::date > i.shipping_limit_date::date
+                               THEN o.order_id END) > 0 
+)
+SELECT *
+FROM seller_processed
+order by seller_late_rate DESC, avg_excess_days DESC;
+
+--(3) 지연 후 재구매 고객
+WITH order_revenue AS (
+		SELECT
+				order_id, SUM(payment_value) AS revenue
+		FROM payments
+		GROUP BY 1
+), 
+customer_orders_ranked AS (
+		SELECT 
+				c.customer_unique_id,
+				o.order_id,
+				o.order_purchase_timestamp,
+				o.order_delivered_customer_date,
+				o.order_estimated_delivery_date,
+				r.revenue,
+				CASE WHEN o.delivery_efficiency <0 THEN 1 ELSE 0 END AS is_delayed,
+				ROW_NUMBER() OVER (PARTITION BY c.customer_unique_id ORDER BY o.order_purchase_timestamp ASC, o.order_id ASC) AS order_rank
+		FROM customers c
+		JOIN orders o ON c.customer_id = o.customer_id
+		LEFT JOIN order_revenue r ON o.order_id = r.order_id
+		WHERE o.order_status = 'delivered'
+),
+first_late_order AS (
+		SELECT
+				customer_unique_id,
+				order_purchase_timestamp AS first_date,
+				order_delivered_customer_date,
+				order_estimated_delivery_date,
+				(order_delivered_customer_date::date - order_estimated_delivery_date::date) AS late_days
+		FROM customer_orders_ranked
+		WHERE is_delayed = 1
+		AND order_rank = 1
+)
+SELECT  
+		f.customer_unique_id,
+		SUM(cor.revenue) AS total_revenue,
+		MAX(cor.order_purchase_timestamp) AS last_purchase_date,
+		COUNT(DISTINCT cor.order_id) AS order_counts,
+		f.late_days,
+		EXTRACT(DAY FROM (MAX(CASE WHEN cor.order_rank = 2 THEN cor.order_purchase_timestamp END) - f.first_date)) AS repurchase_interval
+		
+FROM first_late_order f
+JOIN customer_orders_ranked cor ON f.customer_unique_id = cor.customer_unique_id
+GROUP BY f.customer_unique_id, f.first_date,f.late_days
+HAVING COUNT(cor.order_id) >= 2;
+
+  --(4) 지연 후 미구매 고객
+  
+WITH order_revenue AS (
+		SELECT
+				order_id, SUM(payment_value) AS revenue
+		FROM payments
+		GROUP BY 1
+), 
+customer_orders_ranked AS (
+		SELECT 
+				c.customer_unique_id,
+				o.order_id,
+				o.order_purchase_timestamp,
+				o.order_delivered_customer_date,
+				o.order_estimated_delivery_date,
+				r.revenue,
+				CASE WHEN o.delivery_efficiency <0 THEN 1 ELSE 0 END AS is_delayed,
+				ROW_NUMBER() OVER (PARTITION BY c.customer_unique_id ORDER BY o.order_purchase_timestamp ASC, o.order_id ASC) AS order_rank
+		FROM customers c
+		JOIN orders o ON c.customer_id = o.customer_id
+		LEFT JOIN order_revenue r ON o.order_id = r.order_id
+		WHERE o.order_status = 'delivered'
+),
+first_late_order AS (
+		SELECT
+				customer_unique_id,
+				order_purchase_timestamp AS first_date,
+				order_delivered_customer_date,
+				order_estimated_delivery_date,
+				(order_delivered_customer_date::date - order_estimated_delivery_date::date) AS late_days
+		FROM customer_orders_ranked
+		WHERE is_delayed = 1
+		AND order_rank = 1
+)
+SELECT  
+		f.customer_unique_id,
+		SUM(cor.revenue) AS total_revenue,
+		MAX(cor.order_purchase_timestamp) AS last_purchase_date,
+		COUNT(DISTINCT cor.order_id) AS order_counts,
+		f.late_days
+FROM first_late_order f
+JOIN customer_orders_ranked cor ON f.customer_unique_id = cor.customer_unique_id
+GROUP BY f.customer_unique_id, f.first_date,f.late_days
+HAVING COUNT(cor.order_id) = 1;
+  
+--------------------------------------------
