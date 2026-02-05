@@ -1,6 +1,8 @@
 ## OLIST 배송 개선 프로젝트
 
 ## 1. 프로젝트 개요
+![Period](https://img.shields.io/badge/기간-2025.12--2026.01-blue?style=flat-square) 
+![Duration](https://img.shields.io/badge/소요-약_5주-green?style=flat-square)
 ### 1) Skills & Workflow
 
 | Category | Tools |
@@ -9,6 +11,8 @@
 | **Database** | PostgreSQL (PgAdmin) |
 | **Visualization** | Tableau Public |
 | **Workflow** | **Python** (Pre-processing) ➡️ **PostgreSQL** (ETL) ➡️ **Tableau** (Visualization) |
+
+
 ### 2) 분석 배경
 
 OIlist의 배송 기간 표준편차가 10일에 달하고 최대 188일의 극단적 지연 사례가 발견되는 등 **배송 서비스의 불확실성이 큽니다**. 그 중 배송 지연은 전체 주문 중 **약 6.57%(6,535건)를 차지**합니다. 
