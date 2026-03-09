@@ -91,7 +91,19 @@
 
 - **셀러 지연:** 셀러가 발송 기한을 초과하면, 배송 지연 확률이 **약 4배 급증**하고 배송 기간은 **7.7일 추가 소요**됩니다.
 - **병목 노선:** 동일 주 대비 타 주 배송 지연율이 **1.73배 높고,** 배송 거리에 따라 **지연율이 증가**하며, **전체 지연의 80%가 상위 5% 노선에서 발생**하고 있습니다.
-
+<table style="border: none; border-collapse: collapse;">
+  <tr style="border: none;">
+    <td style="border: none;" width="33%">
+      <img width="377" height="577" alt="image" src="https://github.com/user-attachments/assets/5c9c919f-a4b0-493c-ba9c-b18effd83780" />
+    </td>
+    <td style="border: none;" width="33%">
+      <img width="412" height="565" alt="image" src="https://github.com/user-attachments/assets/785cb4c3-b106-4b39-8dad-ccd7c6d5f210" />
+    </td>
+    <td style="border: none;" width="33%">
+      <img width="402" height="565" alt="image" src="https://github.com/user-attachments/assets/d4482af3-e3bb-40d9-a882-3788708dabd3" />
+    </td>
+  </tr>
+</table>
 <img width="977" height="378" alt="image" src="https://github.com/user-attachments/assets/40a09552-4527-4cc7-908d-e1de59b02e72" />
 
 
