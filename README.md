@@ -16,14 +16,14 @@
 ### 2) 분석 배경
 Olist는 브라질 전역을 연결하는 이커머스 플랫폼이지만, 물류의 불안정성이 존재합니다. 
 <table style="border: none; border-collapse: collapse;">
-  <tr>
-    <td width="50%">
+  <tr style="border: none;">
+    <td style="border: none;"width="50%">
       <ul>
         <li><b>배송 지연 현황:</b> 전체 주문의 <b>6.57% (6,535건)</b>가 지연됩니다.</li>
         <li><b>불안정성:</b> 배송 기간의 <b>표준 편차 10일</b>, 최대 <b>188일의 극단적 지연</b> 등 일관된 배송 경험을 제공하지 못합니다.</li>
       </ul>
     </td>
-    <td width="50%">
+    <td style="border: none;" width="50%">
       <img src="https://github.com/user-attachments/assets/15e11cee-5ef7-4973-b676-7f8ebcc761a0" width="80%"><br>
   </tr>
 </table>
