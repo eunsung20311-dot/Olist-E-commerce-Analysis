@@ -35,35 +35,37 @@
 배송 지연은 고객 경험을 저해하는 핵심 요인입니다.  
 이에 따라 고객 경험에 미치는 **영향을 정량화** 하고, 배송 지연이 발생하는 **주요 원인을 분석**하여 운영 관점에서 **개선 가능한 지점을 도출**하고자 합니다.
 
+<br>
 
 ## 2. 데이터 소개
 
 - **활용 데이터:**[Brazilian E-Commerce Public Dataset by Olist (Kaggle)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 - 2016년부터 2018년까지 **브라질** **Olist 이커머스 플랫폼의 약 10만 건의 실제 주문 정보**를 담은 **공공 데이터셋**으로, 고객, 주문, 리뷰 등 **8개의 관계형 테이블**로 구성되어 있습니다.
 - **선정 이유:** 고유 식별자(ID)를 기준으로 **병합**하여, 지연이 발생한 구체적인 노선과 원인 등을 **입체적으로 분석**할 수 있습니다.
-
-
+<br>
 
 ## 3. 분석 과정
 * [🔗전처리 및 EDA 코드](https://github.com/eunsung20311-dot/Olist-E-commerce-Analysis/blob/main/1.%20Data%20preparation%20%2B%20EDA.ipynb)
 * [🔗가설 검증 코드](https://github.com/eunsung20311-dot/Olist-E-commerce-Analysis/blob/main/2.Hypothesis_Testing.ipynb)
 * [🔗가설 검증 정리 노션](https://plaid-paradox-1a3.notion.site/Olist-2cad569cd2e180fb926cd3c2edc3f423?source=copy_link)
-
+<br>
 ### 1) 데이터 품질 관리
 
 - **데이터 전처리: 데이터 품질**을 진단하고, **컬럼 내 관계 분석**을 하는 **자동화 전처리 함수**를 설계하여 반복적인 전처리를 수행하였습니다.
 - **열 생성:** 약속된 배송일과 실제 배송일 격차를 의미하는  `delivery_efficiency`열과, 지연 여부를 확인하는 `is_delayed`열을 생성했습니다.
 
+<br>
 
 ### 2) 분석 요약
 **(1) 배송 지연 현황** 
 
 - **최근 악화 추세:** 이번 달 배송 지연율은 6.04%로 전월 대비 82.6% 급증하며 불안정한 양상을 보이고 있습니다.
-- **장기 지연 구조:** 지연 주문 중 절반 이상인 **57.61%**가 6일 이상 지연이며**,** 21일 이상의 극단적 지연 사례도 **12.17%**에 달합니다.
+- **장기 지연 구조:** 지연 주문 중 절반 이상인 **57.61%**가 6일 이상 지연이며**,** 21일 이상의 극단적 지연 사례도 12.17%에 달합니다.
 - **긍정적 신호:** 전체 지연율은 상승했으나, 가장 치명적인 6일 이상 지연율은 **전월 대비 47.6% 감소**하며 개선되는 추세를 보이고 있습니다.
 <img width="1178" height="477" alt="image" src="https://github.com/user-attachments/assets/a57d1d3d-a921-4a43-bee8-a031376f230b" />
 <img width="937" height="391" alt="image" src="https://github.com/user-attachments/assets/106fd090-0cbb-4ee5-923d-52bb9cc79cfc" />
 
+<br>
 
 **(2) 배송 지연과 고객 영향 분석**
 
@@ -86,6 +88,7 @@
 </table>
 <img width="1178" height="578" alt="image" src="https://github.com/user-attachments/assets/4070e642-8bd0-41ef-97e1-6063292f25e4" />
 
+<br>
 
 **(3) 배송 지연의 원인 분석**
 
@@ -106,6 +109,7 @@
 </table>
 <img width="977" height="378" alt="image" src="https://github.com/user-attachments/assets/40a09552-4527-4cc7-908d-e1de59b02e72" />
 
+<br>
 
 **(4) 핵심 지표(KPI) 정의** 
 
@@ -116,6 +120,7 @@
 | **셀러 발송 지연율** | 택배사 전달일 > 셀러 발송 기한 | 셀러 관리 지표 |
 | **6일 이상 지연율** | 예상 도착일 + 6일 이상 | 리뷰 스코어 관리 지표 |
 
+<br>
 
 ## 3. 탐색적 데이터 분석 및 가설 검증 (Python)
 
