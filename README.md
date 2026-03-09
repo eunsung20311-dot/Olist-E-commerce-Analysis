@@ -29,6 +29,7 @@
 </table>
 <img width="900" height="378" alt="image" src="https://github.com/user-attachments/assets/6b6e166d-15b4-4471-abe1-4664bccfb5a9" />
 
+<br>
 
 ### 3) 문제 정의
 
@@ -48,12 +49,11 @@
 * [🔗전처리 및 EDA 코드](https://github.com/eunsung20311-dot/Olist-E-commerce-Analysis/blob/main/1.%20Data%20preparation%20%2B%20EDA.ipynb)
 * [🔗가설 검증 코드](https://github.com/eunsung20311-dot/Olist-E-commerce-Analysis/blob/main/2.Hypothesis_Testing.ipynb)
 * [🔗가설 검증 정리 노션](https://plaid-paradox-1a3.notion.site/Olist-2cad569cd2e180fb926cd3c2edc3f423?source=copy_link)
-<br>
+
 ### 1) 데이터 품질 관리
 
 - **데이터 전처리: 데이터 품질**을 진단하고, **컬럼 내 관계 분석**을 하는 **자동화 전처리 함수**를 설계하여 반복적인 전처리를 수행하였습니다.
 - **열 생성:** 약속된 배송일과 실제 배송일 격차를 의미하는  `delivery_efficiency`열과, 지연 여부를 확인하는 `is_delayed`열을 생성했습니다.
-
 <br>
 
 ### 2) 분석 요약
@@ -64,6 +64,7 @@
 - **긍정적 신호:** 전체 지연율은 상승했으나, 가장 치명적인 6일 이상 지연율은 **전월 대비 47.6% 감소**하며 개선되는 추세를 보이고 있습니다.
 <img width="1178" height="477" alt="image" src="https://github.com/user-attachments/assets/a57d1d3d-a921-4a43-bee8-a031376f230b" />
 <img width="937" height="391" alt="image" src="https://github.com/user-attachments/assets/106fd090-0cbb-4ee5-923d-52bb9cc79cfc" />
+
 
 <br>
 
@@ -87,6 +88,7 @@
   </tr>
 </table>
 <img width="1178" height="578" alt="image" src="https://github.com/user-attachments/assets/4070e642-8bd0-41ef-97e1-6063292f25e4" />
+
 
 <br>
 
