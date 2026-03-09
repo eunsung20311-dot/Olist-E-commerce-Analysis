@@ -35,13 +35,14 @@
 배송 지연은 고객 경험을 저해하는 핵심 요인입니다.  
 이에 따라 고객 경험에 미치는 **영향을 정량화** 하고, 배송 지연이 발생하는 **주요 원인을 분석**하여 운영 관점에서 **개선 가능한 지점을 도출**하고자 합니다.
 
+## 2. 데이터 소개
 
-### 4) 활용 데이터
+- **활용 데이터:**[Brazilian E-Commerce Public Dataset by Olist (Kaggle)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+- 2016년부터 2018년까지 **브라질** **Olist 이커머스 플랫폼의 약 10만 건의 실제 주문 정보**를 담은 **공공 데이터셋**으로, 고객, 주문, 리뷰 등 **8개의 관계형 테이블**로 구성되어 있습니다.
+- **선정 이유:** 고유 식별자(ID)를 기준으로 **병합**하여, 지연이 발생한 구체적인 노선과 원인 등을 **입체적으로 분석**할 수 있습니다.
+<img width="2486" height="1496" alt="image" src="https://github.com/user-attachments/assets/5fa7feed-07e6-4b11-942e-34b8280c520f" />
 
-* **Dataset:**[Brazilian E-Commerce Public Dataset by Olist (Kaggle)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
-* 2016년부터 2018년까지 브라질 전역에서 발생한 약 10만 건의 실제 주문 정보를 담은 공공 데이터셋입니다.
-* 고객, 주문, 배송, 리뷰, 제품 등 총 8개의 관계형 테이블로 구성되어 있습니다.
-  
+
 ## 2. 결론
 
 ### 1) 배송 지연의 영향
