@@ -27,7 +27,7 @@
       <img src="https://github.com/user-attachments/assets/15e11cee-5ef7-4973-b676-7f8ebcc761a0" width="80%"><br></td>
   </tr>
 </table>
-<img width="1176" height="378" alt="image" src="https://github.com/user-attachments/assets/6b6e166d-15b4-4471-abe1-4664bccfb5a9" />
+<img width="900" height="378" alt="image" src="https://github.com/user-attachments/assets/6b6e166d-15b4-4471-abe1-4664bccfb5a9" />
 
 
 ### 3) 문제 정의
