@@ -41,7 +41,6 @@
 - **활용 데이터:**[Brazilian E-Commerce Public Dataset by Olist (Kaggle)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 - 2016년부터 2018년까지 **브라질** **Olist 이커머스 플랫폼의 약 10만 건의 실제 주문 정보**를 담은 **공공 데이터셋**으로, 고객, 주문, 리뷰 등 **8개의 관계형 테이블**로 구성되어 있습니다.
 - **선정 이유:** 고유 식별자(ID)를 기준으로 **병합**하여, 지연이 발생한 구체적인 노선과 원인 등을 **입체적으로 분석**할 수 있습니다.
-<img width="2486" height="1496" alt="image" src="https://github.com/user-attachments/assets/5fa7feed-07e6-4b11-942e-34b8280c520f" />
 
 
 
@@ -76,15 +75,12 @@
   <tr style="border: none;">
     <td style="border: none;" width="33%">
       <img width="399" height="561" alt="image" src="https://github.com/user-attachments/assets/ecff06e1-bece-4732-94d1-1807d558c1ef" />
-
     </td>
     <td style="border: none;" width="33%">
       <img width="417" height="564" alt="image" src="https://github.com/user-attachments/assets/9428631b-2324-4318-a87a-a81202ac95ba" />
-
     </td>
     <td style="border: none;" width="33%">
       <img width="413" height="564" alt="image" src="https://github.com/user-attachments/assets/29c26bd0-4e4d-4592-9b7e-ca5a7ddd2a7e" />
-
     </td>
   </tr>
 </table>
