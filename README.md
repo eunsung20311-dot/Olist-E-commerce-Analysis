@@ -35,12 +35,14 @@
 배송 지연은 고객 경험을 저해하는 핵심 요인입니다.  
 이에 따라 고객 경험에 미치는 **영향을 정량화** 하고, 배송 지연이 발생하는 **주요 원인을 분석**하여 운영 관점에서 **개선 가능한 지점을 도출**하고자 합니다.
 
+
 ## 2. 데이터 소개
 
 - **활용 데이터:**[Brazilian E-Commerce Public Dataset by Olist (Kaggle)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 - 2016년부터 2018년까지 **브라질** **Olist 이커머스 플랫폼의 약 10만 건의 실제 주문 정보**를 담은 **공공 데이터셋**으로, 고객, 주문, 리뷰 등 **8개의 관계형 테이블**로 구성되어 있습니다.
 - **선정 이유:** 고유 식별자(ID)를 기준으로 **병합**하여, 지연이 발생한 구체적인 노선과 원인 등을 **입체적으로 분석**할 수 있습니다.
 <img width="2486" height="1496" alt="image" src="https://github.com/user-attachments/assets/5fa7feed-07e6-4b11-942e-34b8280c520f" />
+
 
 
 ## 3. 분석 과정
@@ -52,6 +54,7 @@
 
 - **데이터 전처리: 데이터 품질**을 진단하고, **컬럼 내 관계 분석**을 하는 **자동화 전처리 함수**를 설계하여 반복적인 전처리를 수행하였습니다.
 - **열 생성:** 약속된 배송일과 실제 배송일 격차를 의미하는  `delivery_efficiency`열과, 지연 여부를 확인하는 `is_delayed`열을 생성했습니다.
+
 
 ### 2) 분석 요약
 **(1) 배송 지연 현황** 
@@ -69,7 +72,22 @@
 - **임계점 발견:** 지연 일수 **6일차 부터 리뷰 점수가 1점대로 떨어지며,** 만족도가 오르지 않는 **1점대 유지 구간에 진입**합니다.
 - **재구매 행동의 역설:** 지연 후 재구매한 고객(2.53%, 162건)의 재구매 주기가 정시 도착 그룹보다 **24.5일 빠른 현상이 확인**되었습니다.
     - 이는 플랫폼 의존도가 높은 **소수의 충성 고객군이 존재함**을 의미합니다.
-<img width="792" height="324" alt="image" src="https://github.com/user-attachments/assets/e365f356-e176-4152-be87-43c7fad18ec3" />
+<table style="border: none; border-collapse: collapse;">
+  <tr style="border: none;">
+    <td style="border: none;" width="33%">
+      <img width="399" height="561" alt="image" src="https://github.com/user-attachments/assets/ecff06e1-bece-4732-94d1-1807d558c1ef" />
+
+    </td>
+    <td style="border: none;" width="33%">
+      <img width="417" height="564" alt="image" src="https://github.com/user-attachments/assets/9428631b-2324-4318-a87a-a81202ac95ba" />
+
+    </td>
+    <td style="border: none;" width="33%">
+      <img width="413" height="564" alt="image" src="https://github.com/user-attachments/assets/29c26bd0-4e4d-4592-9b7e-ca5a7ddd2a7e" />
+
+    </td>
+  </tr>
+</table>
 <img width="1178" height="578" alt="image" src="https://github.com/user-attachments/assets/4070e642-8bd0-41ef-97e1-6063292f25e4" />
 
 
@@ -77,7 +95,7 @@
 
 - **셀러 지연:** 셀러가 발송 기한을 초과하면, 배송 지연 확률이 **약 4배 급증**하고 배송 기간은 **7.7일 추가 소요**됩니다.
 - **병목 노선:** 동일 주 대비 타 주 배송 지연율이 **1.73배 높고,** 배송 거리에 따라 **지연율이 증가**하며, **전체 지연의 80%가 상위 5% 노선에서 발생**하고 있습니다.
-<img width="717" height="327" alt="image" src="https://github.com/user-attachments/assets/97ef0d79-d351-48a6-9860-74316821b14f" />
+
 <img width="977" height="378" alt="image" src="https://github.com/user-attachments/assets/40a09552-4527-4cc7-908d-e1de59b02e72" />
 
 
