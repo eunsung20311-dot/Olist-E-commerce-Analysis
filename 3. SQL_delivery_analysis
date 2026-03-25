@@ -5,20 +5,22 @@
   
 -- 1. 대시보드 상단 요약 수치 (배송 지연율, 셀러 지연율, 6일 이상 지연율)
   
+WITH order_item_summary AS (
+  SELECT 
+    o.order_id,
+    o.is_delayed,
+    MAX(CASE WHEN o.order_delivered_carrier_date::DATE > i.shipping_limit_date::DATE THEN 1 END) AS is_seller_delayed,
+    MAX(CASE WHEN o.delivery_efficiency <= -6 THEN 1 END) AS is_long_delayed
+  FROM orders o
+  LEFT JOIN items i ON o.order_id = i.order_id
+  GROUP BY o.order_id, o.is_delayed
+)
 SELECT  
-		COUNT(DISTINCT CASE WHEN is_delayed = 1
-		THEN o.order_id END)::FLOAT
-		/ NULLIF(COUNT(DISTINCT o.order_id),0) AS delay_rate,
-		COUNT(DISTINCT CASE WHEN order_delivered_carrier_date::DATE > shipping_limit_date::DATE 
-		THEN o.order_id END)::FLOAT
-		/ NULLIF(COUNT(DISTINCT o.order_id),0) AS seller_delay_rate,
-		COUNT(DISTINCT CASE WHEN delivery_efficiency <= -6
-		THEN o.order_id END)::FLOAT
-		/ NULLIF(COUNT(DISTINCT CASE WHEN is_delayed = 1
-		THEN o.order_id END),0) AS long_days_delay_rate
-FROM orders o 
-LEFT JOIN items i
-ON o.order_id = i.order_id;
+  SUM(is_delayed) *1.0 / NULLIF(COUNT(order_id),0) AS delay_rate,
+  SUM(is_seller_delayed) *1.0 / NULLIF(COUNT(order_id),0) AS seller_delay_rate,
+  SUM(is_long_delayed) *1.0 / NULLIF(SUM(is_delayed),0) AS long_days_delay_rate
+FROM order_item_base;
+
 --------------------------------------------
   
 -- 2. 월별 지연 추이, 증감률
