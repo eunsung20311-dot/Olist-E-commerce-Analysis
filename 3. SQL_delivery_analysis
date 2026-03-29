@@ -12,7 +12,7 @@ WITH order_item_summary AS (
     MAX(CASE WHEN o.order_delivered_carrier_date::DATE > i.shipping_limit_date::DATE THEN 1 END) AS is_seller_delayed,
     MAX(CASE WHEN o.delivery_efficiency <= -6 THEN 1 END) AS is_long_delayed
   FROM orders o
-  LEFT JOIN items i ON o.order_id = i.order_id
+  JOIN items i ON o.order_id = i.order_id
   GROUP BY o.order_id, o.is_delayed
 )
 SELECT  
@@ -33,7 +33,7 @@ WITH order_item_summary AS (
     MAX(CASE WHEN o.order_delivered_carrier_date::DATE > i.shipping_limit_date::DATE THEN 1 ELSE 0 END) AS is_seller_delayed,
     MAX(CASE WHEN i.delivery_efficiency <= -6 THEN 1 ELSE 0 END) AS is_long_delayed
     FROM orders o
-    LEFT JOIN items i ON o.order_id = i.order_id
+    JOIN items i ON o.order_id = i.order_id
     GROUP BY 1, 2, 3
 ), monthly_kpi AS (
   SELECT 
