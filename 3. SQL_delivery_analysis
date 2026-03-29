@@ -13,6 +13,7 @@ WITH order_item_summary AS (
     MAX(CASE WHEN o.delivery_efficiency <= -6 THEN 1 END) AS is_long_delayed
   FROM orders o
   JOIN items i ON o.order_id = i.order_id
+  WHERE o.order_status = 'delivered'
   GROUP BY o.order_id, o.is_delayed
 )
 SELECT  
@@ -34,6 +35,7 @@ WITH order_item_summary AS (
     MAX(CASE WHEN i.delivery_efficiency <= -6 THEN 1 ELSE 0 END) AS is_long_delayed
     FROM orders o
     JOIN items i ON o.order_id = i.order_id
+    WHERE o.order_status = 'delivered'
     GROUP BY 1, 2, 3
 ), monthly_kpi AS (
   SELECT 
