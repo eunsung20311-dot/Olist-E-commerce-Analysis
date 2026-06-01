@@ -1,3 +1,14 @@
+### 📢 포트폴리오를 검토해주시는 인사담당자님께
+현재 깃허브 자체의 주피터 노트북(.ipynb) 뷰어 엔진 오류로 인해 간혹 코드가 열리지 않는 현상이 발생하고 있습니다. 
+만약 상단의 코드가 정상적으로 보이지 않으신다면, 아래의 **[nbviewer 링크]**를 클릭하시면 끊김 없이 깨끗하게 코드를 확인하실 수 있습니다!
+
+* 👉 [01. Data Preparation & EDA (데이터 준비 및 탐색) 확인하기](https://nbviewer.org/github/eunsung20311-dot/Olist-E-commerce-Analysis/blob/main/01_data_preparation_eda.ipynb)
+* 👉 [02. Hypothesis Testing (가설 검정) 확인하기](https://nbviewer.org/github/eunsung20311-dot/Olist-E-commerce-Analysis/blob/main/02_hypothesis_testing.ipynb)
+
+---
+
+
+
 ## OLIST 배송 개선 프로젝트
 
 ## 1. 프로젝트 개요
