@@ -4,7 +4,6 @@
 
 <img width="722" height="653" alt="image" src="https://github.com/user-attachments/assets/9e13b274-365b-40a9-8057-17bcabe413a6" />
 
-
 > 📌 Key Insight  
 > 배송 지연 발생 시 리뷰 -2.02점, 재구매율 -16% 감소  
 > D+6 이후 만족도 1점대 고착 → D+5 선제 대응 필요
