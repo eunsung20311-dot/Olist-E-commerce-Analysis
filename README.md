@@ -1,8 +1,8 @@
 
 ## 📦브라질 이커머스 OLIST 배송 지연 최적화 프로젝트
 - OLIST 배송 데이터의 지연 영향과 근본 원인을 통계적으로 규명하고, 이를 기반으로 **물류 최적화 전략 및 Tableau 상시 관제 대시보드를 구축**한 프로젝트입니다.
+<img width="717" height="648" alt="image" src="https://github.com/user-attachments/assets/1770f14f-5516-4cfc-a39f-3a13057acb8c" />
 
-![alt text](image.png)
 
 > 📌 Key Insight  
 > 배송 지연 발생 시 리뷰 -2.02점, 재구매율 -16% 감소  
