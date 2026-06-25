@@ -96,12 +96,11 @@
 - 가장 우선적으로 개입이 필요한 핵심 병목 세그먼트를 직관적으로 식별하기 위해, 거리와 무게를 그룹화하여 2x2 매트릭스 형태의 버블 차트를 구축했습니다.
 
 2️⃣**노선/카테고리 리스트** 
-<img width="424" height="290" alt="image" src="https://github.com/user-attachments/assets/5ce41ada-67f4-4a4f-b8b6-4389ee3e0ae6" />
-
+<img width="924" height="315" alt="image" src="https://github.com/user-attachments/assets/1146c90e-f2ce-4b35-919e-53bd2bb95dab" />
 - 매트릭스 차트에서 특정 위험 구간(예: 장거리-경량)을 클릭하면 하단의 [노선별 / 카테고리별 지연율 및 주문 건수] 데이터가 실시간 인터랙션(대시보드 필터)으로 연동됩니다.
 
 3️⃣**지연중 고객 리스트 추출** 
-<img width="416" height="295" alt="image" src="https://github.com/user-attachments/assets/f0c9a142-52a4-4b5f-8084-566dcb9eaf1d" />
+<img width="914" height="300" alt="image" src="https://github.com/user-attachments/assets/3e8e59da-d81a-4762-93b8-041e048c928a" />
   * 매개변수 필터로 지연일수의 범위를 입력하면, 현재 지연을 경험하는 **[지연중 고객 리스트]** 가 추출됩니다.
 
 <br>
