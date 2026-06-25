@@ -24,7 +24,7 @@
 | :--- | :--- |
 | **Language** | Python (Pandas, Numpy, Matplotlib) | |
 | **Visualization** | Tableau Public |
-| **Workflow** | Python → SQLAlchemy ETL → PostgreSQL → Tableau Public |
+| **Workflow** | Python → PostgreSQL Data Mart → Tableau Public |
 
 - Tableau Public 제약으로 최종 시각화는 csv 기반으로 연결했습니다.
 
@@ -92,15 +92,16 @@
 ## 💻 5. 실무 활용을 위한 시스템 구현 (Tableau)
 
 1️⃣ **우선순위 매트릭스** 
-![alt text](image-1.png)
+<img width="419" height="232" alt="image" src="https://github.com/user-attachments/assets/9ab9b5cf-ad1d-4fbf-a823-dd889992884f" />
 - 가장 우선적으로 개입이 필요한 핵심 병목 세그먼트를 직관적으로 식별하기 위해, 거리와 무게를 그룹화하여 2x2 매트릭스 형태의 버블 차트를 구축했습니다.
 
 2️⃣**노선/카테고리 리스트** 
-![alt text](image-2.png)
+<img width="424" height="290" alt="image" src="https://github.com/user-attachments/assets/5ce41ada-67f4-4a4f-b8b6-4389ee3e0ae6" />
+
 - 매트릭스 차트에서 특정 위험 구간(예: 장거리-경량)을 클릭하면 하단의 [노선별 / 카테고리별 지연율 및 주문 건수] 데이터가 실시간 인터랙션(대시보드 필터)으로 연동됩니다.
 
 3️⃣**지연중 고객 리스트 추출** 
-![alt text](image-3.png)
+<img width="416" height="295" alt="image" src="https://github.com/user-attachments/assets/f0c9a142-52a4-4b5f-8084-566dcb9eaf1d" />
   * 매개변수 필터로 지연일수의 범위를 입력하면, 현재 지연을 경험하는 **[지연중 고객 리스트]** 가 추출됩니다.
 
 <br>
