@@ -24,9 +24,9 @@
 
 | Category | Tools |
 | :--- | :--- |
-| **Language** | Python (Pandas, Numpy, Matplotlib) | |
+| **Language** | Python (Pandas, Numpy, Matplotlib) |
 | **Visualization** | Tableau Public |
-| **Workflow** | Python → SQLAlchemy ETL → PostgreSQL → Tableau Public |
+| **Workflow** | Python → Tableau Public |
 
 - Tableau Public 제약으로 최종 시각화는 csv 기반으로 연결했습니다.
 
