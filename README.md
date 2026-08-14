@@ -14,7 +14,7 @@
 - 전처리 및 EDA : [GitHub 링크](https://github.com/eunsung20311-dot/Olist-E-commerce-Analysis/blob/main/01_data_preparation_eda.ipynb)
 - 가설 검증 코드 : [GitHub 링크
   ](https://github.com/eunsung20311-dot/Olist-E-commerce-Analysis/blob/main/02_hypothesis_testing.ipynb)
-
+<br>
 ## 1. 프로젝트 개요
 
 ![Period](https://img.shields.io/badge/기간-2025.12--2026.01-blue?style=flat-square)
@@ -66,7 +66,7 @@
 
 - 지연 일수별 평점 추이를 추적한 결과, **지연 6일 차를 기점으로 평점이 1점대로 고착화**되는 것을 확인했습니다.
 - 이를 바탕으로 **D+6을 고객 만족 붕괴 임계점**으로 설정했습니다.
-
+<br>
 ### [PART 2] 고위험 지연 세그먼트 진단 및 운영 우선순위 도출
 
 #### 1️⃣ 보조 분석: 배송 난이도 관련 특성 확인
@@ -119,15 +119,15 @@
 ## 💻 5. 실무 활용을 위한 Tableau 대시보드 구현
 
 1️⃣ **우선순위 매트릭스** 
-![alt text]<img width="419" height="232" alt="image" src="https://github.com/user-attachments/assets/f8805b0e-cb27-4597-aee0-5972868d5077" />
+<img width="419" height="232" alt="image" src="https://github.com/user-attachments/assets/f8805b0e-cb27-4597-aee0-5972868d5077" />
 - 가장 우선적으로 개입이 필요한 핵심 병목 세그먼트를 직관적으로 식별하기 위해, 거리와 무게를 그룹화하여 2x2 매트릭스 형태의 버블 차트를 구축했습니다.
 
 2️⃣**노선/카테고리 리스트** 
-![alt text]<img width="422" height="292" alt="image" src="https://github.com/user-attachments/assets/32451ca0-b696-49d6-86ef-5f51c770eac6" />
+<img width="422" height="292" alt="image" src="https://github.com/user-attachments/assets/32451ca0-b696-49d6-86ef-5f51c770eac6" />
 - 매트릭스 차트에서 특정 위험 구간(예: 장거리-경량)을 클릭하면 하단의 [노선별 / 카테고리별 지연율 및 주문 건수] 데이터가 실시간 인터랙션(대시보드 필터)으로 연동됩니다.
 
 3️⃣**지연중 고객 리스트 추출** 
-![alt text]<img width="407" height="297" alt="image" src="https://github.com/user-attachments/assets/6ae53a42-d261-4183-8d7f-64a4da9ec16a" />
+<img width="407" height="297" alt="image" src="https://github.com/user-attachments/assets/6ae53a42-d261-4183-8d7f-64a4da9ec16a" />
   * 매개변수 필터로 지연일수의 범위를 입력하면, 현재 지연을 경험하는 **[지연중 고객 리스트]** 가 추출됩니다.
 
 <br>
