@@ -119,15 +119,15 @@
 ## 💻 5. 실무 활용을 위한 Tableau 대시보드 구현
 
 1️⃣ **우선순위 매트릭스** 
-![alt text](image-1.png)
+![alt text]<img width="419" height="232" alt="image" src="https://github.com/user-attachments/assets/f8805b0e-cb27-4597-aee0-5972868d5077" />
 - 가장 우선적으로 개입이 필요한 핵심 병목 세그먼트를 직관적으로 식별하기 위해, 거리와 무게를 그룹화하여 2x2 매트릭스 형태의 버블 차트를 구축했습니다.
 
 2️⃣**노선/카테고리 리스트** 
-![alt text](image-2.png)
+![alt text]<img width="422" height="292" alt="image" src="https://github.com/user-attachments/assets/32451ca0-b696-49d6-86ef-5f51c770eac6" />
 - 매트릭스 차트에서 특정 위험 구간(예: 장거리-경량)을 클릭하면 하단의 [노선별 / 카테고리별 지연율 및 주문 건수] 데이터가 실시간 인터랙션(대시보드 필터)으로 연동됩니다.
 
 3️⃣**지연중 고객 리스트 추출** 
-![alt text](image-3.png)
+![alt text]<img width="407" height="297" alt="image" src="https://github.com/user-attachments/assets/6ae53a42-d261-4183-8d7f-64a4da9ec16a" />
   * 매개변수 필터로 지연일수의 범위를 입력하면, 현재 지연을 경험하는 **[지연중 고객 리스트]** 가 추출됩니다.
 
 <br>
