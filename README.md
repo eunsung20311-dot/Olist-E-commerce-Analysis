@@ -2,6 +2,8 @@
 
 - OLIST 배송 데이터를 활용해 **배송 지연이 고객 경험에 미치는 영향**을 정량적으로 확인하고,  
    **고객 피해가 큰 지연 세그먼트를 식별해 운영 우선순위와 개선 전략을 제안한 프로젝트**입니다.
+  <br>
+  
   <img width="717" height="648" alt="image" src="https://github.com/user-attachments/assets/1770f14f-5516-4cfc-a39f-3a13057acb8c" />
 
 > 📌 Key Insight  
@@ -15,6 +17,7 @@
 - 가설 검증 코드 : [GitHub 링크
   ](https://github.com/eunsung20311-dot/Olist-E-commerce-Analysis/blob/main/02_hypothesis_testing.ipynb)
 <br>
+
 ## 1. 프로젝트 개요
 
 ![Period](https://img.shields.io/badge/기간-2025.12--2026.01-blue?style=flat-square)
@@ -67,6 +70,7 @@
 - 지연 일수별 평점 추이를 추적한 결과, **지연 6일 차를 기점으로 평점이 1점대로 고착화**되는 것을 확인했습니다.
 - 이를 바탕으로 **D+6을 고객 만족 붕괴 임계점**으로 설정했습니다.
 <br>
+
 ### [PART 2] 고위험 지연 세그먼트 진단 및 운영 우선순위 도출
 
 #### 1️⃣ 보조 분석: 배송 난이도 관련 특성 확인
