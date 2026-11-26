@@ -6,9 +6,6 @@
   
   <img width="717" height="648" alt="image" src="https://github.com/user-attachments/assets/1770f14f-5516-4cfc-a39f-3a13057acb8c" />
 
-> 📌 Key Insight  
-> 배송 지연 발생 시 리뷰 -2.02점 (n=95,824, p<0.001), 재구매율 -24% (관측기간 보정, p=0.001)
-> D+6 이후 만족도 1점대 고착 (p<0.001) →  D+4~5 선제 대응이 골든타임
 
 ## 🔗 Quick Access
 
